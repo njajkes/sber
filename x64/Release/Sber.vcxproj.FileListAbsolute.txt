@@ -1,0 +1,4 @@
+C:\Users\асер\source\repos\Sber\x64\Release\Sber.vcxprojAssemblyReference.cache
+C:\Users\асер\source\repos\Sber\x64\Release\Sber.Sberform.resources
+C:\Users\асер\source\repos\Sber\x64\Release\Sber.vcxproj.GenerateResource.cache
+C:\Users\асер\source\repos\Sber\x64\Release\Sber.exe

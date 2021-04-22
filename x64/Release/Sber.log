@@ -1,0 +1,8 @@
+﻿  Get.cpp
+C:\Users\асер\source\repos\Sber\ClassStock.h(33,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\асер\source\repos\Sber\ClassStock.h(78,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\асер\source\repos\Sber\ClassStock.h(122,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\асер\source\repos\Sber\Get.cpp(179,17): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\асер\source\repos\Sber\Get.cpp(28): warning C4715: Switcher: значение возвращается не при всех путях выполнения
+  Get.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  Sber.vcxproj -> C:\Users\асер\source\repos\Sber\x64\Release\Sber.exe

@@ -1,0 +1,8 @@
+C:\Users\асер\source\repos\Sber\x64\Debug\Sber.vcxprojAssemblyReference.cache
+C:\Users\асер\source\repos\Sber\x64\Debug\Sber.Sberform.resources
+C:\Users\асер\source\repos\Sber\x64\Debug\Sber.vcxproj.GenerateResource.cache
+C:\Users\асер\source\repos\Sber\x64\Debug\Sber.exe
+C:\Users\Bulbuljator3000\Desktop\Sber\x64\Debug\Sber.vcxprojAssemblyReference.cache
+C:\Users\Bulbuljator3000\Desktop\Sber\x64\Debug\Sber.Sberform.resources
+C:\Users\Bulbuljator3000\Desktop\Sber\x64\Debug\Sber.vcxproj.GenerateResource.cache
+C:\Users\Bulbuljator3000\Desktop\Sber\x64\Debug\Sber.exe
