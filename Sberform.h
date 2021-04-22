@@ -1,5 +1,6 @@
 #pragma once
 #include "Functions.h"
+#include <ctime>
 
 namespace Sber {
 
@@ -40,20 +41,6 @@ namespace Sber {
 
 	protected:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::DateTimePicker^ DateTimePicker;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ Vklad;
@@ -76,28 +63,9 @@ namespace Sber {
 	private: System::Windows::Forms::TextBox^ income;
 	private: System::Windows::Forms::Label^ percLbl;
 	private: System::Windows::Forms::TextBox^ percTxtbx;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	private: System::Windows::Forms::CheckBox^ checkBox1;
+	private: System::Windows::Forms::CheckBox^ devTools;
+	private: System::Windows::Forms::CheckBox^ morethan3y;
 
 
 
@@ -135,6 +103,9 @@ namespace Sber {
 			this->income = (gcnew System::Windows::Forms::TextBox());
 			this->percLbl = (gcnew System::Windows::Forms::Label());
 			this->percTxtbx = (gcnew System::Windows::Forms::TextBox());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->devTools = (gcnew System::Windows::Forms::CheckBox());
+			this->morethan3y = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
 			// DateTimePicker
@@ -335,11 +306,49 @@ namespace Sber {
 			this->percTxtbx->TabIndex = 36;
 			this->percTxtbx->TextChanged += gcnew System::EventHandler(this, &Sberform::textBox1_TextChanged);
 			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Location = System::Drawing::Point(15, 481);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(105, 17);
+			this->checkBox1->TabIndex = 39;
+			this->checkBox1->Text = L"maxmin->maxmin";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &Sberform::checkBox1_CheckedChanged);
+			this->checkBox1->Visible = 0;
+			// 
+			// devTools
+			// 
+			this->devTools->AutoSize = true;
+			this->devTools->Location = System::Drawing::Point(343, 442);
+			this->devTools->Name = L"devTools";
+			this->devTools->Size = System::Drawing::Size(70, 17);
+			this->devTools->TabIndex = 40;
+			this->devTools->Text = L"devTools";
+			this->devTools->UseVisualStyleBackColor = true;
+			this->devTools->Visible = false;
+			this->devTools->CheckedChanged += gcnew System::EventHandler(this, &Sberform::devTools_CheckedChanged);
+			// 
+			// morethan3y
+			// 
+			this->morethan3y->AutoSize = true;
+			this->morethan3y->Location = System::Drawing::Point(309, 481);
+			this->morethan3y->Name = L"morethan3y";
+			this->morethan3y->Size = System::Drawing::Size(66, 17);
+			this->morethan3y->TabIndex = 41;
+			this->morethan3y->Text = L">3 years";
+			this->morethan3y->UseVisualStyleBackColor = true;
+			this->morethan3y->CheckedChanged += gcnew System::EventHandler(this, &Sberform::morethan3y_CheckedChanged);
+			// 
 			// Sberform
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(408, 464);
+			this->ClientSize = System::Drawing::Size(409, 461);
+			this->Controls->Add(this->morethan3y);
+			this->Controls->Add(this->devTools);
+			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->percTxtbx);
 			this->Controls->Add(this->percLbl);
 			this->Controls->Add(this->income);
@@ -360,6 +369,9 @@ namespace Sber {
 			this->Controls->Add(this->Vklad);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->DateTimePicker);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximumSize = System::Drawing::Size(425, 540);
+			this->MinimumSize = System::Drawing::Size(425, 500);
 			this->Name = L"Sberform";
 			this->Text = L"Sberform";
 			this->Load += gcnew System::EventHandler(this, &Sberform::Sberform_Load);
@@ -391,7 +403,30 @@ private: System::Void label4_Click_3(System::Object^ sender, System::EventArgs^ 
 private: System::Void DateTimePicker_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	devTools->Visible = 1;
 }
+private: System::Void MinMax(void) {
+	time_t nw = time(0);
+	tm* tme = localtime(&nw);
+	switch (Vklad_Box->SelectedIndex) {
+	case 0:
+		DateTimePicker->MaxDate = System::DateTime(tme->tm_year + 1900 + 3, tme->tm_mon+1, tme->tm_mday, 0, 0, 0, 0);
+		DateTimePicker->MinDate = System::DateTime(tme->tm_year + 1900, tme->tm_mon + 3 + 1, tme->tm_mday, 0, 0, 0, 0);
+		break;
+	case 1:
+		DateTimePicker->MaxDate = System::DateTime(tme->tm_year + 1900 + 3, tme->tm_mon+1, tme->tm_mday, 0, 0, 0, 0);
+		DateTimePicker->MinDate = System::DateTime(tme->tm_year + 1900, tme->tm_mon + 1 + 1, tme->tm_mday, 0, 0, 0, 0);
+		break;
+	case 2:
+		DateTimePicker->MaxDate = System::DateTime(tme->tm_year + 1900 + 3, tme->tm_mon+1, tme->tm_mday, 0, 0, 0, 0);
+		DateTimePicker->MinDate = System::DateTime(tme->tm_year + 1900, tme->tm_mon + 3 + 1, tme->tm_mday, 0, 0, 0, 0);
+		break;
+	case 3:
+		DateTimePicker->MaxDate = System::DateTime(tme->tm_year + 1900 + 3, tme->tm_mon+1, tme->tm_mday, 0, 0, 0, 0);
+		DateTimePicker->MinDate = System::DateTime(tme->tm_year + 1900, tme->tm_mon + 3 + 1, tme->tm_mday, 0, 0, 0, 0);
+		break;
+	}
+};
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		
 		if (Vklad_Box->SelectedIndex == 0) {
@@ -443,7 +478,7 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, Sys
 			Pensioner->Visible = 0;
 		}
 
-	
+		MinMax();
 }
 	private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) { // Кнопка
 		int g_days = DateTimePicker->Value.Day; // дни
@@ -515,6 +550,33 @@ private: System::Void ADD_credit_TextChanged(System::Object^ sender, System::Eve
 private: System::Void label4_Click_4(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (checkBox1->Checked) {
+		DateTimePicker->MinDate = System::DateTime(1753, 1, 1, 0, 0, 0, 0);
+		DateTimePicker->MaxDate = System::DateTime(9998, 12, 31, 0, 0, 0, 0);
+	}
+	else {
+		MinMax();
+	}
+}
+private: System::Void devTools_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (devTools->Checked) {
+		this->Size = System::Drawing::Size(425, 540);
+	}
+	else {
+		this->Size = System::Drawing::Size(425, 500);
+		devTools->Visible = 0;
+	}
+}
+private: System::Void morethan3y_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (morethan3y->Checked) {
+		MinMax();
+		DateTimePicker->MaxDate = System::DateTime(9998, 12, 31, 0, 0, 0, 0);
+	}
+	else {
+		MinMax();
+	}
 }
 };
 }

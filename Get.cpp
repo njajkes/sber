@@ -48,7 +48,7 @@ double SwitcherIncome(double vklad_s, int Vklad_Type, int year, int month, int d
 	case 1:
 	{
 		dopolnitelniy_procent vklad;
-		return Get_Result(vklad_s, vklad.get_percent(monts(year, month, day)), year, month, day, capitalization, vklad_p, vklad_m, Min_vklad) - vklad_s;
+		return round(Get_Result(vklad_s, vklad.get_percent(monts(year, month, day)), year, month, day, capitalization, vklad_p, vklad_m, Min_vklad) - vklad_s, 2);
 	}
 	case 2:
 	{
