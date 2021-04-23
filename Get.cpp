@@ -82,28 +82,23 @@ double GetPerc(double vklad_s, int Vklad_Type, int year, int month, int day, dou
 	{
 		sohranyai vklad;
 		if (capitalization) {
-			int y = System::Convert::ToInt32(monts(year, month, day)/12) == 0 ? 1 : System::Convert::ToInt32(monts(year, month, day)/12);
-			return round(SwitcherIncome(vklad_s, Vklad_Type, year, month, day, vklad_p, vklad_m, pensioner, capitalization, offline, Min_vklad) / vklad_s * 100 / y, 2);
-			
+			double i = monts(year, month, day) / 12.0;
+			return round(SwitcherIncome(vklad_s, Vklad_Type, year, month, day, vklad_p, vklad_m, pensioner, capitalization, offline, Min_vklad) / vklad_s * 100 / i, 2);
 		}
 		return round(vklad.get_percent(monts(year, month, day), vklad_s, offline, pensioner), 3);
 	}
 	case 3:
 	{
 		popolniay vklad;
-		if (capitalization) {
-			int y = System::Convert::ToInt32(monts(year, month, day) / 12) == 0 ? 1 : System::Convert::ToInt32(monts(year, month, day) / 12);
-			return round(SwitcherIncome(vklad_s, Vklad_Type, year, month, day, 0, 0, pensioner, capitalization, offline, Min_vklad) / vklad_s * 100 / y, 2);
-		}
+		if (capitalization)
+			return round(SwitcherIncome(vklad_s, Vklad_Type, year, month, day, 0, 0, pensioner, capitalization, offline, Min_vklad) / vklad_s * 100 / (monts(year, month, day) / 12), 2);
 		return round(vklad.get_percent(monts(year, month, day), vklad_s, offline, pensioner), 3);
 	}
 	case 4:
 	{
 		upravliai vklad;
-		if (capitalization) {
-			int y = System::Convert::ToInt32(monts(year, month, day) / 12) == 0 ? 1 : System::Convert::ToInt32(monts(year, month, day) / 12);
-			return round(SwitcherIncome(vklad_s, Vklad_Type, year, month, day, 0, 0, pensioner, capitalization, offline, Min_vklad) / vklad_s * 100 / y, 2);
-		}
+		if (capitalization)
+			return round(SwitcherIncome(vklad_s, Vklad_Type, year, month, day, 0, 0, pensioner, capitalization, offline, Min_vklad) / vklad_s * 100 / (monts(year, month, day) / 12), 2);
 		return round(vklad.get_percent(monts(year, month, day), Min_vklad, offline), 3);
 	}
 	}
