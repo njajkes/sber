@@ -220,7 +220,7 @@ namespace Sber {
 			// Capitalization
 			// 
 			this->Capitalization->AutoSize = true;
-			this->Capitalization->Location = System::Drawing::Point(12, 272);
+			this->Capitalization->Location = System::Drawing::Point(12, 283);
 			this->Capitalization->Name = L"Capitalization";
 			this->Capitalization->Size = System::Drawing::Size(104, 17);
 			this->Capitalization->TabIndex = 26;
@@ -241,7 +241,7 @@ namespace Sber {
 			// Pensioner
 			// 
 			this->Pensioner->AutoSize = true;
-			this->Pensioner->Location = System::Drawing::Point(13, 295);
+			this->Pensioner->Location = System::Drawing::Point(13, 306);
 			this->Pensioner->Name = L"Pensioner";
 			this->Pensioner->Size = System::Drawing::Size(91, 17);
 			this->Pensioner->TabIndex = 28;
@@ -252,7 +252,7 @@ namespace Sber {
 			// Offline
 			// 
 			this->Offline->AutoSize = true;
-			this->Offline->Location = System::Drawing::Point(12, 318);
+			this->Offline->Location = System::Drawing::Point(12, 329);
 			this->Offline->Name = L"Offline";
 			this->Offline->Size = System::Drawing::Size(129, 17);
 			this->Offline->TabIndex = 29;
@@ -263,7 +263,7 @@ namespace Sber {
 			// 
 			// min_vklad
 			// 
-			this->min_vklad->Location = System::Drawing::Point(150, 240);
+			this->min_vklad->Location = System::Drawing::Point(150, 251);
 			this->min_vklad->Name = L"min_vklad";
 			this->min_vklad->Size = System::Drawing::Size(322, 20);
 			this->min_vklad->TabIndex = 30;
@@ -273,7 +273,7 @@ namespace Sber {
 			// min_vklad_b
 			// 
 			this->min_vklad_b->AutoSize = true;
-			this->min_vklad_b->Location = System::Drawing::Point(12, 240);
+			this->min_vklad_b->Location = System::Drawing::Point(12, 251);
 			this->min_vklad_b->Name = L"min_vklad_b";
 			this->min_vklad_b->Size = System::Drawing::Size(118, 13);
 			this->min_vklad_b->TabIndex = 31;
@@ -446,7 +446,7 @@ namespace Sber {
 			this->ErrDEC_credit->AutoSize = true;
 			this->ErrDEC_credit->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->ErrDEC_credit->ForeColor = System::Drawing::Color::Red;
-			this->ErrDEC_credit->Location = System::Drawing::Point(150, 215);
+			this->ErrDEC_credit->Location = System::Drawing::Point(150, 217);
 			this->ErrDEC_credit->Name = L"ErrDEC_credit";
 			this->ErrDEC_credit->Size = System::Drawing::Size(37, 15);
 			this->ErrDEC_credit->TabIndex = 52;
@@ -459,7 +459,7 @@ namespace Sber {
 			this->ErrMin_Vklad->AutoSize = true;
 			this->ErrMin_Vklad->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->ErrMin_Vklad->ForeColor = System::Drawing::Color::Red;
-			this->ErrMin_Vklad->Location = System::Drawing::Point(150, 263);
+			this->ErrMin_Vklad->Location = System::Drawing::Point(150, 274);
 			this->ErrMin_Vklad->Name = L"ErrMin_Vklad";
 			this->ErrMin_Vklad->Size = System::Drawing::Size(322, 15);
 			this->ErrMin_Vklad->TabIndex = 53;
@@ -668,7 +668,7 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, Sys
 
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) { // Кнопка
 	int g_days, g_months, g_years;
-
+	ErrADD_credit->Visible = 0; ErrDEC_credit->Visible = 0; ErrVklad->Visible = 0; ErrMin_Vklad->Visible = 0;
 	if (DateTimePicker->Visible) {
 		g_days = DateTimePicker->Value.Day; // дни
 		g_months = DateTimePicker->Value.Month; // месяцы
@@ -827,7 +827,14 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 			ErrMin_Vklad->Text = "Неснижаемый остаток не может быть больше суммы вклада";
 			return;
 		}
-		// TODO: Проверка на значение неснижаемого порога с учётом DEC_credit
+		if (DEC_credit->Visible) {
+			double fooResult = Switcher(ppl_vklad, Vklad_Type, g_years, g_months, g_days, add_credit, dec_credit, pensioner, capitalization, offline, Min_vklad);
+			if ( !(fooResult+1) ) {
+				ErrDEC_credit->Visible = 1;
+				ErrDEC_credit->Text = "Слишком большое снятие при таком неснижаемом остатке\nВведите меньшее снятие со счёта";
+				return;
+			}
+		}
 	}
 	
 	double Result = Switcher(ppl_vklad, Vklad_Type, g_years, g_months, g_days, add_credit, dec_credit, pensioner, capitalization, offline, Min_vklad);
@@ -967,9 +974,11 @@ private: System::Void ADD_credit_TextChanged(System::Object^ sender, System::Eve
 }
 private: System::Void Vklad_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	ErrVklad->Visible = 0;
+	ErrDEC_credit->Visible = 0;
 }
 private: System::Void min_vklad_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	ErrMin_Vklad->Visible = 0;
+	ErrDEC_credit->Visible = 0;
 }
 private: System::Void label4_Click_5(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {}
