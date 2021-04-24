@@ -1,3 +1,6 @@
+//740: TODO: проверка на значение DEC_credit и проверка на неснижаемый порог  
+//820: TODO: Проверка на значение неснижаемого порога с учётом DEC_credit
+
 #pragma once
 #include "Functions.h"
 #include <ctime>
@@ -67,6 +70,10 @@ namespace Sber {
 	private: System::Windows::Forms::Label^ tmVklFooLbl;
 	private: System::Windows::Forms::Label^ mLabel;
 	private: System::Windows::Forms::CheckBox^ otkatPolzunka;
+	private: System::Windows::Forms::Label^ ErrVklad;
+	private: System::Windows::Forms::Label^ ErrADD_credit;
+	private: System::Windows::Forms::Label^ ErrDEC_credit;
+	private: System::Windows::Forms::Label^ ErrMin_Vklad;
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
@@ -108,6 +115,10 @@ namespace Sber {
 			this->tmVklFooLbl = (gcnew System::Windows::Forms::Label());
 			this->mLabel = (gcnew System::Windows::Forms::Label());
 			this->otkatPolzunka = (gcnew System::Windows::Forms::CheckBox());
+			this->ErrVklad = (gcnew System::Windows::Forms::Label());
+			this->ErrADD_credit = (gcnew System::Windows::Forms::Label());
+			this->ErrDEC_credit = (gcnew System::Windows::Forms::Label());
+			this->ErrMin_Vklad = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->TrackMonth2))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -135,7 +146,7 @@ namespace Sber {
 			this->Vklad->Enabled = false;
 			this->Vklad->Location = System::Drawing::Point(150, 111);
 			this->Vklad->Name = L"Vklad";
-			this->Vklad->Size = System::Drawing::Size(272, 20);
+			this->Vklad->Size = System::Drawing::Size(322, 20);
 			this->Vklad->TabIndex = 15;
 			this->Vklad->TextChanged += gcnew System::EventHandler(this, &Sberform::Vklad_TextChanged);
 			// 
@@ -148,7 +159,7 @@ namespace Sber {
 			});
 			this->Vklad_Box->Location = System::Drawing::Point(13, 12);
 			this->Vklad_Box->Name = L"Vklad_Box";
-			this->Vklad_Box->Size = System::Drawing::Size(409, 21);
+			this->Vklad_Box->Size = System::Drawing::Size(459, 21);
 			this->Vklad_Box->TabIndex = 16;
 			this->Vklad_Box->Text = L"Выберите вклад";
 			this->Vklad_Box->SelectedIndexChanged += gcnew System::EventHandler(this, &Sberform::comboBox1_SelectedIndexChanged);
@@ -156,7 +167,7 @@ namespace Sber {
 			// button1
 			// 
 			this->button1->Enabled = false;
-			this->button1->Location = System::Drawing::Point(12, 345);
+			this->button1->Location = System::Drawing::Point(12, 353);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(181, 23);
 			this->button1->TabIndex = 18;
@@ -180,7 +191,7 @@ namespace Sber {
 			// 
 			this->ADD_credit->Location = System::Drawing::Point(217, 150);
 			this->ADD_credit->Name = L"ADD_credit";
-			this->ADD_credit->Size = System::Drawing::Size(205, 20);
+			this->ADD_credit->Size = System::Drawing::Size(255, 20);
 			this->ADD_credit->TabIndex = 23;
 			this->ADD_credit->Visible = false;
 			this->ADD_credit->TextChanged += gcnew System::EventHandler(this, &Sberform::ADD_credit_TextChanged);
@@ -201,7 +212,7 @@ namespace Sber {
 			// 
 			this->DEC_credit->Location = System::Drawing::Point(265, 195);
 			this->DEC_credit->Name = L"DEC_credit";
-			this->DEC_credit->Size = System::Drawing::Size(157, 20);
+			this->DEC_credit->Size = System::Drawing::Size(207, 20);
 			this->DEC_credit->TabIndex = 25;
 			this->DEC_credit->Visible = false;
 			this->DEC_credit->TextChanged += gcnew System::EventHandler(this, &Sberform::DEC_credit_TextChanged);
@@ -209,7 +220,7 @@ namespace Sber {
 			// Capitalization
 			// 
 			this->Capitalization->AutoSize = true;
-			this->Capitalization->Location = System::Drawing::Point(12, 264);
+			this->Capitalization->Location = System::Drawing::Point(12, 272);
 			this->Capitalization->Name = L"Capitalization";
 			this->Capitalization->Size = System::Drawing::Size(104, 17);
 			this->Capitalization->TabIndex = 26;
@@ -221,16 +232,16 @@ namespace Sber {
 			// PrintResult
 			// 
 			this->PrintResult->Enabled = false;
-			this->PrintResult->Location = System::Drawing::Point(208, 374);
+			this->PrintResult->Location = System::Drawing::Point(208, 382);
 			this->PrintResult->Name = L"PrintResult";
-			this->PrintResult->Size = System::Drawing::Size(181, 20);
+			this->PrintResult->Size = System::Drawing::Size(264, 20);
 			this->PrintResult->TabIndex = 27;
 			this->PrintResult->TextChanged += gcnew System::EventHandler(this, &Sberform::PrintResult_TextChanged);
 			// 
 			// Pensioner
 			// 
 			this->Pensioner->AutoSize = true;
-			this->Pensioner->Location = System::Drawing::Point(13, 287);
+			this->Pensioner->Location = System::Drawing::Point(13, 295);
 			this->Pensioner->Name = L"Pensioner";
 			this->Pensioner->Size = System::Drawing::Size(91, 17);
 			this->Pensioner->TabIndex = 28;
@@ -241,7 +252,7 @@ namespace Sber {
 			// Offline
 			// 
 			this->Offline->AutoSize = true;
-			this->Offline->Location = System::Drawing::Point(12, 310);
+			this->Offline->Location = System::Drawing::Point(12, 318);
 			this->Offline->Name = L"Offline";
 			this->Offline->Size = System::Drawing::Size(129, 17);
 			this->Offline->TabIndex = 29;
@@ -252,9 +263,9 @@ namespace Sber {
 			// 
 			// min_vklad
 			// 
-			this->min_vklad->Location = System::Drawing::Point(150, 232);
+			this->min_vklad->Location = System::Drawing::Point(150, 240);
 			this->min_vklad->Name = L"min_vklad";
-			this->min_vklad->Size = System::Drawing::Size(272, 20);
+			this->min_vklad->Size = System::Drawing::Size(322, 20);
 			this->min_vklad->TabIndex = 30;
 			this->min_vklad->Visible = false;
 			this->min_vklad->TextChanged += gcnew System::EventHandler(this, &Sberform::min_vklad_TextChanged);
@@ -262,7 +273,7 @@ namespace Sber {
 			// min_vklad_b
 			// 
 			this->min_vklad_b->AutoSize = true;
-			this->min_vklad_b->Location = System::Drawing::Point(12, 232);
+			this->min_vklad_b->Location = System::Drawing::Point(12, 240);
 			this->min_vklad_b->Name = L"min_vklad_b";
 			this->min_vklad_b->Size = System::Drawing::Size(118, 13);
 			this->min_vklad_b->TabIndex = 31;
@@ -272,7 +283,7 @@ namespace Sber {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(102, 377);
+			this->label2->Location = System::Drawing::Point(102, 385);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(91, 13);
 			this->label2->TabIndex = 32;
@@ -282,7 +293,7 @@ namespace Sber {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(102, 407);
+			this->label3->Location = System::Drawing::Point(102, 415);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(95, 13);
 			this->label3->TabIndex = 33;
@@ -291,16 +302,16 @@ namespace Sber {
 			// income
 			// 
 			this->income->Enabled = false;
-			this->income->Location = System::Drawing::Point(208, 404);
+			this->income->Location = System::Drawing::Point(208, 412);
 			this->income->Name = L"income";
-			this->income->Size = System::Drawing::Size(181, 20);
+			this->income->Size = System::Drawing::Size(264, 20);
 			this->income->TabIndex = 34;
 			this->income->TextChanged += gcnew System::EventHandler(this, &Sberform::income_TextChanged);
 			// 
 			// percLbl
 			// 
 			this->percLbl->AutoSize = true;
-			this->percLbl->Location = System::Drawing::Point(65, 452);
+			this->percLbl->Location = System::Drawing::Point(65, 460);
 			this->percLbl->Name = L"percLbl";
 			this->percLbl->Size = System::Drawing::Size(128, 13);
 			this->percLbl->TabIndex = 35;
@@ -310,16 +321,16 @@ namespace Sber {
 			// percTxtbx
 			// 
 			this->percTxtbx->Enabled = false;
-			this->percTxtbx->Location = System::Drawing::Point(208, 449);
+			this->percTxtbx->Location = System::Drawing::Point(208, 457);
 			this->percTxtbx->Name = L"percTxtbx";
-			this->percTxtbx->Size = System::Drawing::Size(82, 20);
+			this->percTxtbx->Size = System::Drawing::Size(102, 20);
 			this->percTxtbx->TabIndex = 36;
 			this->percTxtbx->TextChanged += gcnew System::EventHandler(this, &Sberform::textBox1_TextChanged);
 			// 
 			// devTools
 			// 
 			this->devTools->AutoSize = true;
-			this->devTools->Location = System::Drawing::Point(343, 468);
+			this->devTools->Location = System::Drawing::Point(402, 474);
 			this->devTools->Name = L"devTools";
 			this->devTools->Size = System::Drawing::Size(70, 17);
 			this->devTools->TabIndex = 40;
@@ -347,7 +358,7 @@ namespace Sber {
 			this->TrackMonth2->Maximum = 36;
 			this->TrackMonth2->Minimum = 1;
 			this->TrackMonth2->Name = L"TrackMonth2";
-			this->TrackMonth2->Size = System::Drawing::Size(409, 45);
+			this->TrackMonth2->Size = System::Drawing::Size(459, 45);
 			this->TrackMonth2->TabIndex = 44;
 			this->TrackMonth2->Value = 1;
 			this->TrackMonth2->Scroll += gcnew System::EventHandler(this, &Sberform::trackBar1_Scroll);
@@ -366,7 +377,7 @@ namespace Sber {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(371, 87);
+			this->label5->Location = System::Drawing::Point(421, 87);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(51, 13);
 			this->label5->TabIndex = 46;
@@ -377,7 +388,7 @@ namespace Sber {
 			// tmVklFooLbl
 			// 
 			this->tmVklFooLbl->AutoSize = true;
-			this->tmVklFooLbl->Location = System::Drawing::Point(81, 39);
+			this->tmVklFooLbl->Location = System::Drawing::Point(115, 39);
 			this->tmVklFooLbl->Name = L"tmVklFooLbl";
 			this->tmVklFooLbl->Size = System::Drawing::Size(144, 13);
 			this->tmVklFooLbl->TabIndex = 47;
@@ -388,7 +399,7 @@ namespace Sber {
 			// mLabel
 			// 
 			this->mLabel->AutoSize = true;
-			this->mLabel->Location = System::Drawing::Point(231, 39);
+			this->mLabel->Location = System::Drawing::Point(262, 39);
 			this->mLabel->Name = L"mLabel";
 			this->mLabel->Size = System::Drawing::Size(48, 13);
 			this->mLabel->TabIndex = 48;
@@ -406,11 +417,64 @@ namespace Sber {
 			this->otkatPolzunka->UseVisualStyleBackColor = true;
 			this->otkatPolzunka->CheckedChanged += gcnew System::EventHandler(this, &Sberform::otkatPolzunka_CheckedChanged);
 			// 
+			// ErrVklad
+			// 
+			this->ErrVklad->AutoSize = true;
+			this->ErrVklad->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->ErrVklad->ForeColor = System::Drawing::Color::Red;
+			this->ErrVklad->Location = System::Drawing::Point(150, 134);
+			this->ErrVklad->Name = L"ErrVklad";
+			this->ErrVklad->Size = System::Drawing::Size(37, 15);
+			this->ErrVklad->TabIndex = 50;
+			this->ErrVklad->Text = L"label6";
+			this->ErrVklad->Visible = false;
+			// 
+			// ErrADD_credit
+			// 
+			this->ErrADD_credit->AutoSize = true;
+			this->ErrADD_credit->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->ErrADD_credit->ForeColor = System::Drawing::Color::Red;
+			this->ErrADD_credit->Location = System::Drawing::Point(150, 173);
+			this->ErrADD_credit->Name = L"ErrADD_credit";
+			this->ErrADD_credit->Size = System::Drawing::Size(37, 15);
+			this->ErrADD_credit->TabIndex = 51;
+			this->ErrADD_credit->Text = L"label6";
+			this->ErrADD_credit->Visible = false;
+			// 
+			// ErrDEC_credit
+			// 
+			this->ErrDEC_credit->AutoSize = true;
+			this->ErrDEC_credit->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->ErrDEC_credit->ForeColor = System::Drawing::Color::Red;
+			this->ErrDEC_credit->Location = System::Drawing::Point(150, 215);
+			this->ErrDEC_credit->Name = L"ErrDEC_credit";
+			this->ErrDEC_credit->Size = System::Drawing::Size(37, 15);
+			this->ErrDEC_credit->TabIndex = 52;
+			this->ErrDEC_credit->Text = L"label6";
+			this->ErrDEC_credit->Visible = false;
+			this->ErrDEC_credit->Click += gcnew System::EventHandler(this, &Sberform::ErrDEC_credit_Click);
+			// 
+			// ErrMin_Vklad
+			// 
+			this->ErrMin_Vklad->AutoSize = true;
+			this->ErrMin_Vklad->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->ErrMin_Vklad->ForeColor = System::Drawing::Color::Red;
+			this->ErrMin_Vklad->Location = System::Drawing::Point(150, 263);
+			this->ErrMin_Vklad->Name = L"ErrMin_Vklad";
+			this->ErrMin_Vklad->Size = System::Drawing::Size(322, 15);
+			this->ErrMin_Vklad->TabIndex = 53;
+			this->ErrMin_Vklad->Text = L"Неснижаемый остаток не может быть меньше 30 000 рублей";
+			this->ErrMin_Vklad->Visible = false;
+			// 
 			// Sberform
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(434, 491);
+			this->ClientSize = System::Drawing::Size(484, 491);
+			this->Controls->Add(this->ErrMin_Vklad);
+			this->Controls->Add(this->ErrDEC_credit);
+			this->Controls->Add(this->ErrADD_credit);
+			this->Controls->Add(this->ErrVklad);
 			this->Controls->Add(this->otkatPolzunka);
 			this->Controls->Add(this->mLabel);
 			this->Controls->Add(this->tmVklFooLbl);
@@ -440,8 +504,8 @@ namespace Sber {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->DateTimePicker);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-			this->MaximumSize = System::Drawing::Size(450, 600);
-			this->MinimumSize = System::Drawing::Size(450, 530);
+			this->MaximumSize = System::Drawing::Size(500, 600);
+			this->MinimumSize = System::Drawing::Size(500, 530);
 			this->Name = L"Sberform";
 			this->Text = L"Sberform";
 			this->Load += gcnew System::EventHandler(this, &Sberform::Sberform_Load);
@@ -489,6 +553,11 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, Sys
 		label4->Visible = 1;
 		label5->Visible = 1;
 	}
+
+	ErrADD_credit->Visible = 0;
+	ErrDEC_credit->Visible = 0;
+	ErrMin_Vklad->Visible = 0;
+	ErrVklad->Visible = 0;
 
 	if (Vklad_Box->SelectedIndex > 0) {
 		TrackMonth2->Maximum = 36;
@@ -637,67 +706,128 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 
 	int Vklad_Type = Vklad_Box->SelectedIndex + 1; // тип вклада 1 2 3 4
 	double add_credit = 0, dec_credit = 0, Min_vklad = 0, ppl_vklad = 0;
-
 	System::String^ txt; // СЛАйшная строка, в которую пихается строка для проверки
+
 	if (ADD_credit->Visible) {
-		
 		txt = ADD_credit->Text; // Пихаем строку, которую хотим проверить
 		
 		if (txt == L"") { // Если строка пустая, выводим это сообщение
-			ADD_credit->Text = "Пожалуйста, введите число арабскими цифрами"; 
+			ErrADD_credit->Visible = 1;
+			ErrADD_credit->Text = "Пожалуйста, введите число арабскими цифрами"; 
 			return; 
 		}
 		// Далее проверяем поштучно каждый символ строки,
 		for (int i = 0; i < txt->Length; i++) { // если он окажется не цифрой, выводим сообщение о просьбе писать арабскими цифрами
-			if (txt[i] != L'0' && txt[i] != L'1' && txt[i] != L'2' && txt[i] != L'3' && txt[i] != L'4' &&
-				txt[i] != L'5' && txt[i] != L'6' && txt[i] != L'7' && txt[i] != L'8' && txt[i] != L'9') {
-				ADD_credit->Text = "Пожалуйста, введите число арабскими цифрами";
+			if (txt[i] != L'0' && txt[i] != L'1' && txt[i] != L'2' && txt[i] != L'3' && txt[i] != L'4' && txt[i] != L' ' &&
+				txt[i] != L'5' && txt[i] != L'6' && txt[i] != L'7' && txt[i] != L'8' && txt[i] != L'9' && txt[i] != L',') 
+			{
+				ErrADD_credit->Visible = 1;
+				ErrADD_credit->Text = "Пожалуйста, введите число арабскими цифрами";
 				return;
 			};
 		}
 		add_credit = System::Convert::ToInt32(ADD_credit->Text); // +vklad
 	}
+
 	if (DEC_credit->Visible) {
 		txt = DEC_credit->Text;
-		if (txt == L"") { DEC_credit->Text = "Пожалуйста, введите число арабскими цифрами"; return; }
+		if (txt == L"") { // Проверка на символы в снятии вклада
+			ErrDEC_credit->Visible = 1;
+			ErrDEC_credit->Text = "Пожалуйста, введите число арабскими цифрами"; 
+			return; 
+		}
 		for (int i = 0; i < txt->Length; i++) {
-			if (txt[i] != L'0' && txt[i] != L'1' && txt[i] != L'2' && txt[i] != L'3' && txt[i] != L'4' &&
-				txt[i] != L'5' && txt[i] != L'6' && txt[i] != L'7' && txt[i] != L'8' && txt[i] != L'9')
+			if (txt[i] != L'0' && txt[i] != L'1' && txt[i] != L'2' && txt[i] != L'3' && txt[i] != L'4' && txt[i] != L' ' &&
+				txt[i] != L'5' && txt[i] != L'6' && txt[i] != L'7' && txt[i] != L'8' && txt[i] != L'9' && txt[i] != L',')
 			{
-				DEC_credit->Text = "Пожалуйста, введите число арабскими цифрами";
+				ErrDEC_credit->Visible = 1;
+				ErrDEC_credit->Text = "Пожалуйста, введите число арабскими цифрами";
 				return;
 			};
 		}
 		dec_credit = System::Convert::ToInt32(DEC_credit->Text);// - vklad
+		// TODO: проверка на значение и проверка на неснижаемый порог 
 	}
 	int capitalization = Capitalization->Checked; // капитализация
 	int pensioner = Pensioner->Checked; // пенсоинер
 	int offline = Offline->Checked; // онлайн вклад
 
+	// Проверка на символы в сумме вклада
 	txt = Vklad->Text;
-	if (txt == L"") { Vklad->Text = "Пожалуйста, введите число арабскими цифрами"; return; }
+	if (txt == L"") {
+		ErrVklad->Visible = 1;
+		ErrVklad->Text = "Пожалуйста, введите число арабскими цифрами"; 
+		return; 
+	}
 	for (int i = 0; i < txt->Length; i++) {
-		if (txt[i] != L'0' && txt[i] != L'1' && txt[i] != L'2' && txt[i] != L'3' && txt[i] != L'4'&& 
-			txt[i] != L'5' && txt[i] != L'6' && txt[i] != L'7' && txt[i] != L'8' && txt[i] != L'9')
+		if (txt[i] != L'0' && txt[i] != L'1' && txt[i] != L'2' && txt[i] != L'3' && txt[i] != L'4' && txt[i] != L' ' &&
+			txt[i] != L'5' && txt[i] != L'6' && txt[i] != L'7' && txt[i] != L'8' && txt[i] != L'9' && txt[i] != L',')
 		{
-			Vklad->Text = "Пожалуйста, введите число арабскими цифрами";
+			ErrVklad->Visible = 1;
+			ErrVklad->Text = "Пожалуйста, введите число арабскими цифрами";
 			return;
 		};
 	}
 	ppl_vklad = System::Convert::ToDouble(Vklad->Text); // summa vklada
 	
+	// Проверка на минимальную сумму вклада
+	switch (Vklad_Type)
+	{
+	case 1:
+		if (ppl_vklad < 100000) {
+			ErrVklad->Visible = 1;
+			ErrVklad->Text = "Минимальная сумма для этого вклада: 100 000 рублей";
+			return;
+		}
+		break;
+	case 2:
+	case 3:
+		if (ppl_vklad < 1000) {
+			ErrVklad->Visible = 1;
+			ErrVklad->Text = "Минимальная сумма для этого вклада: 1 000 рублей";
+			return;
+		}
+		break;
+	case 4:
+		if (ppl_vklad < 30000) {
+			ErrVklad->Visible = 1;
+			ErrVklad->Text = "Минимальная сумма для этого вклада: 30 000 рублей";
+			return;
+		}
+		break;
+	default:
+		break;
+	}
+
 	if (min_vklad->Visible) {
 		txt = min_vklad->Text;
-		if (txt == L"") { min_vklad->Text = "Пожалуйста, введите число арабскими цифрами"; return; }
+		if (txt == L"") { 
+			ErrMin_Vklad->Visible = 1;
+			ErrMin_Vklad->Text = "Пожалуйста, введите число арабскими цифрами";
+			return; 
+		}
 		for (int i = 0; i < txt->Length; i++) {
-			if (txt[i] != L'0' && txt[i] != L'1' && txt[i] != L'2' && txt[i] != L'3' && txt[i] != L'4' &&
-				txt[i] != L'5' && txt[i] != L'6' && txt[i] != L'7' && txt[i] != L'8' && txt[i] != L'9')
+			if (txt[i] != L'0' && txt[i] != L'1' && txt[i] != L'2' && txt[i] != L'3' && txt[i] != L'4' && txt[i] != L' ' &&
+				txt[i] != L'5' && txt[i] != L'6' && txt[i] != L'7' && txt[i] != L'8' && txt[i] != L'9' && txt[i] != L',')
 			{
-				min_vklad->Text = "Пожалуйста, введите число арабскими цифрами";
+				ErrMin_Vklad->Visible = 1;
+				ErrMin_Vklad->Text = "Пожалуйста, введите число арабскими цифрами";
 				return;
 			};
 		}
 		Min_vklad = System::Convert::ToDouble(min_vklad->Text); //неснижаемый порог
+		// Проверка на значение неснижаемого порога
+		if (Min_vklad < 30000) {
+			ErrMin_Vklad->Visible = 1;
+			ErrMin_Vklad->Text = "Неснижаемый остаток не может быть меньше 30 000 рублей";
+			return;
+		}
+		else if (Min_vklad > ppl_vklad) {
+			ErrMin_Vklad->Visible = 1;
+			ErrMin_Vklad->Text = "Неснижаемый остаток не может быть больше суммы вклада";
+			return;
+		}
+		// TODO: Проверка на значение неснижаемого порога с учётом DEC_credit
 	}
 	
 	double Result = Switcher(ppl_vklad, Vklad_Type, g_years, g_months, g_days, add_credit, dec_credit, pensioner, capitalization, offline, Min_vklad);
@@ -733,10 +863,10 @@ private: System::Void Check_Box_Dec_CheckedChanged(System::Object^ sender, Syste
 
 private: System::Void devTools_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	if (devTools->Checked) {
-		this->Size = System::Drawing::Size(425, 600);
+		this->Size = System::Drawing::Size(500, 600);
 	}
 	else {
-		this->Size = System::Drawing::Size(425, 530);
+		this->Size = System::Drawing::Size(500, 530);
 		devTools->Visible = 0;
 	}
 }
@@ -829,19 +959,27 @@ private: System::Void otkatPolzunka_CheckedChanged(System::Object^ sender, Syste
 private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	devTools->Visible = 1;
 }
+private: System::Void DEC_credit_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	ErrDEC_credit->Visible = 0;
+}
+private: System::Void ADD_credit_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	ErrADD_credit->Visible = 0;
+}
+private: System::Void Vklad_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	ErrVklad->Visible = 0;
+}
+private: System::Void min_vklad_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	ErrMin_Vklad->Visible = 0;
+}
 private: System::Void label4_Click_5(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {}
-private: System::Void DEC_credit_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void label2_Click_1(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void Capitalization_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void Online_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {}
-private: System::Void Vklad_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void PrintResult_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
-private: System::Void min_vklad_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void label2_Click_2(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void income_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
-private: System::Void ADD_credit_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void label4_Click_4(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void domainUpDown1_SelectedItemChanged(System::Object^ sender, System::EventArgs^ e) {}
@@ -856,5 +994,6 @@ private: System::Void label4_Click_2(System::Object^ sender, System::EventArgs^ 
 private: System::Void Sberform_Load(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void label4_Click_3(System::Object^ sender, System::EventArgs^ e) {}
 private: System::Void DateTimePicker_ValueChanged(System::Object^ sender, System::EventArgs^ e) {}
+private: System::Void ErrDEC_credit_Click(System::Object^ sender, System::EventArgs^ e) {}
 };
 }
