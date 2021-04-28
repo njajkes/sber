@@ -74,6 +74,7 @@ namespace Sber {
 	private: System::Windows::Forms::Label^ ErrADD_credit;
 	private: System::Windows::Forms::Label^ ErrDEC_credit;
 	private: System::Windows::Forms::Label^ ErrMin_Vklad;
+
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
@@ -124,9 +125,10 @@ namespace Sber {
 			// 
 			// DateTimePicker
 			// 
-			this->DateTimePicker->Location = System::Drawing::Point(13, 55);
+			this->DateTimePicker->Location = System::Drawing::Point(17, 59);
+			this->DateTimePicker->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->DateTimePicker->Name = L"DateTimePicker";
-			this->DateTimePicker->Size = System::Drawing::Size(409, 20);
+			this->DateTimePicker->Size = System::Drawing::Size(544, 22);
 			this->DateTimePicker->TabIndex = 13;
 			this->DateTimePicker->Visible = false;
 			this->DateTimePicker->ValueChanged += gcnew System::EventHandler(this, &Sberform::DateTimePicker_ValueChanged);
@@ -134,9 +136,10 @@ namespace Sber {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(10, 114);
+			this->label1->Location = System::Drawing::Point(13, 123);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(123, 13);
+			this->label1->Size = System::Drawing::Size(150, 14);
 			this->label1->TabIndex = 14;
 			this->label1->Text = L"Введите сумму вклада";
 			this->label1->Click += gcnew System::EventHandler(this, &Sberform::label1_Click_1);
@@ -144,32 +147,41 @@ namespace Sber {
 			// Vklad
 			// 
 			this->Vklad->Enabled = false;
-			this->Vklad->Location = System::Drawing::Point(150, 111);
+			this->Vklad->ForeColor = System::Drawing::Color::Chocolate;
+			this->Vklad->Location = System::Drawing::Point(200, 120);
+			this->Vklad->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Vklad->Name = L"Vklad";
-			this->Vklad->Size = System::Drawing::Size(322, 20);
+			this->Vklad->Size = System::Drawing::Size(428, 22);
 			this->Vklad->TabIndex = 15;
 			this->Vklad->TextChanged += gcnew System::EventHandler(this, &Sberform::Vklad_TextChanged);
 			// 
 			// Vklad_Box
 			// 
+			this->Vklad_Box->BackColor = System::Drawing::Color::White;
+			this->Vklad_Box->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Vklad_Box->ForeColor = System::Drawing::Color::Chocolate;
 			this->Vklad_Box->FormattingEnabled = true;
 			this->Vklad_Box->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
 				L"Вклад Дополнительный процент", L"Вклад Сохраняй",
 					L"Вклад Пополняй", L"Вклад Управляй"
 			});
-			this->Vklad_Box->Location = System::Drawing::Point(13, 12);
+			this->Vklad_Box->Location = System::Drawing::Point(17, 13);
+			this->Vklad_Box->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Vklad_Box->Name = L"Vklad_Box";
-			this->Vklad_Box->Size = System::Drawing::Size(459, 21);
+			this->Vklad_Box->Size = System::Drawing::Size(611, 22);
 			this->Vklad_Box->TabIndex = 16;
 			this->Vklad_Box->Text = L"Выберите вклад";
 			this->Vklad_Box->SelectedIndexChanged += gcnew System::EventHandler(this, &Sberform::comboBox1_SelectedIndexChanged);
 			// 
 			// button1
 			// 
+			this->button1->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 			this->button1->Enabled = false;
-			this->button1->Location = System::Drawing::Point(12, 353);
+			this->button1->ForeColor = System::Drawing::Color::DarkGreen;
+			this->button1->Location = System::Drawing::Point(16, 380);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(181, 23);
+			this->button1->Size = System::Drawing::Size(241, 25);
 			this->button1->TabIndex = 18;
 			this->button1->Text = L"ВЫЧИСЛИТЬ";
 			this->button1->UseVisualStyleBackColor = true;
@@ -178,9 +190,10 @@ namespace Sber {
 			// Check_Box_Add
 			// 
 			this->Check_Box_Add->AutoSize = true;
-			this->Check_Box_Add->Location = System::Drawing::Point(13, 153);
+			this->Check_Box_Add->Location = System::Drawing::Point(17, 165);
+			this->Check_Box_Add->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Check_Box_Add->Name = L"Check_Box_Add";
-			this->Check_Box_Add->Size = System::Drawing::Size(198, 17);
+			this->Check_Box_Add->Size = System::Drawing::Size(246, 18);
 			this->Check_Box_Add->TabIndex = 22;
 			this->Check_Box_Add->Text = L"Ежемесячное пополнение вклада";
 			this->Check_Box_Add->UseVisualStyleBackColor = true;
@@ -189,9 +202,11 @@ namespace Sber {
 			// 
 			// ADD_credit
 			// 
-			this->ADD_credit->Location = System::Drawing::Point(217, 150);
+			this->ADD_credit->ForeColor = System::Drawing::Color::Chocolate;
+			this->ADD_credit->Location = System::Drawing::Point(289, 162);
+			this->ADD_credit->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->ADD_credit->Name = L"ADD_credit";
-			this->ADD_credit->Size = System::Drawing::Size(255, 20);
+			this->ADD_credit->Size = System::Drawing::Size(339, 22);
 			this->ADD_credit->TabIndex = 23;
 			this->ADD_credit->Visible = false;
 			this->ADD_credit->TextChanged += gcnew System::EventHandler(this, &Sberform::ADD_credit_TextChanged);
@@ -199,9 +214,10 @@ namespace Sber {
 			// Check_Box_Dec
 			// 
 			this->Check_Box_Dec->AutoSize = true;
-			this->Check_Box_Dec->Location = System::Drawing::Point(12, 195);
+			this->Check_Box_Dec->Location = System::Drawing::Point(16, 210);
+			this->Check_Box_Dec->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Check_Box_Dec->Name = L"Check_Box_Dec";
-			this->Check_Box_Dec->Size = System::Drawing::Size(247, 17);
+			this->Check_Box_Dec->Size = System::Drawing::Size(309, 18);
 			this->Check_Box_Dec->TabIndex = 24;
 			this->Check_Box_Dec->Text = L"Ежемесячное частитчное снятие со вклада";
 			this->Check_Box_Dec->UseVisualStyleBackColor = true;
@@ -210,9 +226,11 @@ namespace Sber {
 			// 
 			// DEC_credit
 			// 
-			this->DEC_credit->Location = System::Drawing::Point(265, 195);
+			this->DEC_credit->ForeColor = System::Drawing::Color::Chocolate;
+			this->DEC_credit->Location = System::Drawing::Point(353, 210);
+			this->DEC_credit->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->DEC_credit->Name = L"DEC_credit";
-			this->DEC_credit->Size = System::Drawing::Size(207, 20);
+			this->DEC_credit->Size = System::Drawing::Size(275, 22);
 			this->DEC_credit->TabIndex = 25;
 			this->DEC_credit->Visible = false;
 			this->DEC_credit->TextChanged += gcnew System::EventHandler(this, &Sberform::DEC_credit_TextChanged);
@@ -220,9 +238,10 @@ namespace Sber {
 			// Capitalization
 			// 
 			this->Capitalization->AutoSize = true;
-			this->Capitalization->Location = System::Drawing::Point(12, 283);
+			this->Capitalization->Location = System::Drawing::Point(16, 305);
+			this->Capitalization->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Capitalization->Name = L"Capitalization";
-			this->Capitalization->Size = System::Drawing::Size(104, 17);
+			this->Capitalization->Size = System::Drawing::Size(126, 18);
 			this->Capitalization->TabIndex = 26;
 			this->Capitalization->Text = L"Капитализация";
 			this->Capitalization->UseVisualStyleBackColor = true;
@@ -232,18 +251,21 @@ namespace Sber {
 			// PrintResult
 			// 
 			this->PrintResult->Enabled = false;
-			this->PrintResult->Location = System::Drawing::Point(208, 382);
+			this->PrintResult->ForeColor = System::Drawing::Color::Chocolate;
+			this->PrintResult->Location = System::Drawing::Point(277, 411);
+			this->PrintResult->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->PrintResult->Name = L"PrintResult";
-			this->PrintResult->Size = System::Drawing::Size(264, 20);
+			this->PrintResult->Size = System::Drawing::Size(351, 22);
 			this->PrintResult->TabIndex = 27;
 			this->PrintResult->TextChanged += gcnew System::EventHandler(this, &Sberform::PrintResult_TextChanged);
 			// 
 			// Pensioner
 			// 
 			this->Pensioner->AutoSize = true;
-			this->Pensioner->Location = System::Drawing::Point(13, 306);
+			this->Pensioner->Location = System::Drawing::Point(17, 330);
+			this->Pensioner->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Pensioner->Name = L"Pensioner";
-			this->Pensioner->Size = System::Drawing::Size(91, 17);
+			this->Pensioner->Size = System::Drawing::Size(108, 18);
 			this->Pensioner->TabIndex = 28;
 			this->Pensioner->Text = L"Я пенсионер";
 			this->Pensioner->UseVisualStyleBackColor = true;
@@ -252,9 +274,10 @@ namespace Sber {
 			// Offline
 			// 
 			this->Offline->AutoSize = true;
-			this->Offline->Location = System::Drawing::Point(12, 329);
+			this->Offline->Location = System::Drawing::Point(16, 355);
+			this->Offline->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Offline->Name = L"Offline";
-			this->Offline->Size = System::Drawing::Size(129, 17);
+			this->Offline->Size = System::Drawing::Size(156, 18);
 			this->Offline->TabIndex = 29;
 			this->Offline->Text = L"Оформить в офисе\?";
 			this->Offline->UseVisualStyleBackColor = true;
@@ -263,9 +286,11 @@ namespace Sber {
 			// 
 			// min_vklad
 			// 
-			this->min_vklad->Location = System::Drawing::Point(150, 251);
+			this->min_vklad->ForeColor = System::Drawing::Color::Chocolate;
+			this->min_vklad->Location = System::Drawing::Point(200, 271);
+			this->min_vklad->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->min_vklad->Name = L"min_vklad";
-			this->min_vklad->Size = System::Drawing::Size(322, 20);
+			this->min_vklad->Size = System::Drawing::Size(428, 22);
 			this->min_vklad->TabIndex = 30;
 			this->min_vklad->Visible = false;
 			this->min_vklad->TextChanged += gcnew System::EventHandler(this, &Sberform::min_vklad_TextChanged);
@@ -273,9 +298,10 @@ namespace Sber {
 			// min_vklad_b
 			// 
 			this->min_vklad_b->AutoSize = true;
-			this->min_vklad_b->Location = System::Drawing::Point(12, 251);
+			this->min_vklad_b->Location = System::Drawing::Point(16, 271);
+			this->min_vklad_b->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->min_vklad_b->Name = L"min_vklad_b";
-			this->min_vklad_b->Size = System::Drawing::Size(118, 13);
+			this->min_vklad_b->Size = System::Drawing::Size(145, 14);
 			this->min_vklad_b->TabIndex = 31;
 			this->min_vklad_b->Text = L"Неснижамый остаток";
 			this->min_vklad_b->Visible = false;
@@ -283,9 +309,10 @@ namespace Sber {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(102, 385);
+			this->label2->Location = System::Drawing::Point(136, 415);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(91, 13);
+			this->label2->Size = System::Drawing::Size(114, 14);
 			this->label2->TabIndex = 32;
 			this->label2->Text = L"Накопите всего:";
 			this->label2->Click += gcnew System::EventHandler(this, &Sberform::label2_Click_2);
@@ -293,27 +320,31 @@ namespace Sber {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(102, 415);
+			this->label3->Location = System::Drawing::Point(136, 447);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(95, 13);
+			this->label3->Size = System::Drawing::Size(120, 14);
 			this->label3->TabIndex = 33;
 			this->label3->Text = L"Доход по вкладу:";
 			// 
 			// income
 			// 
 			this->income->Enabled = false;
-			this->income->Location = System::Drawing::Point(208, 412);
+			this->income->ForeColor = System::Drawing::Color::Chocolate;
+			this->income->Location = System::Drawing::Point(277, 443);
+			this->income->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->income->Name = L"income";
-			this->income->Size = System::Drawing::Size(264, 20);
+			this->income->Size = System::Drawing::Size(351, 22);
 			this->income->TabIndex = 34;
 			this->income->TextChanged += gcnew System::EventHandler(this, &Sberform::income_TextChanged);
 			// 
 			// percLbl
 			// 
 			this->percLbl->AutoSize = true;
-			this->percLbl->Location = System::Drawing::Point(65, 460);
+			this->percLbl->Location = System::Drawing::Point(87, 495);
+			this->percLbl->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->percLbl->Name = L"percLbl";
-			this->percLbl->Size = System::Drawing::Size(128, 13);
+			this->percLbl->Size = System::Drawing::Size(167, 14);
 			this->percLbl->TabIndex = 35;
 			this->percLbl->Text = L"Ваш процент по вкладу:";
 			this->percLbl->Click += gcnew System::EventHandler(this, &Sberform::label4_Click_4);
@@ -321,18 +352,21 @@ namespace Sber {
 			// percTxtbx
 			// 
 			this->percTxtbx->Enabled = false;
-			this->percTxtbx->Location = System::Drawing::Point(208, 457);
+			this->percTxtbx->ForeColor = System::Drawing::Color::Chocolate;
+			this->percTxtbx->Location = System::Drawing::Point(277, 492);
+			this->percTxtbx->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->percTxtbx->Name = L"percTxtbx";
-			this->percTxtbx->Size = System::Drawing::Size(102, 20);
+			this->percTxtbx->Size = System::Drawing::Size(135, 22);
 			this->percTxtbx->TabIndex = 36;
 			this->percTxtbx->TextChanged += gcnew System::EventHandler(this, &Sberform::textBox1_TextChanged);
 			// 
 			// devTools
 			// 
 			this->devTools->AutoSize = true;
-			this->devTools->Location = System::Drawing::Point(402, 474);
+			this->devTools->Location = System::Drawing::Point(536, 510);
+			this->devTools->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->devTools->Name = L"devTools";
-			this->devTools->Size = System::Drawing::Size(70, 17);
+			this->devTools->Size = System::Drawing::Size(81, 18);
 			this->devTools->TabIndex = 40;
 			this->devTools->Text = L"devTools";
 			this->devTools->UseVisualStyleBackColor = true;
@@ -342,9 +376,10 @@ namespace Sber {
 			// morethan3y
 			// 
 			this->morethan3y->AutoSize = true;
-			this->morethan3y->Location = System::Drawing::Point(299, 542);
+			this->morethan3y->Location = System::Drawing::Point(399, 583);
+			this->morethan3y->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->morethan3y->Name = L"morethan3y";
-			this->morethan3y->Size = System::Drawing::Size(66, 17);
+			this->morethan3y->Size = System::Drawing::Size(82, 18);
 			this->morethan3y->TabIndex = 41;
 			this->morethan3y->Text = L">3 years";
 			this->morethan3y->UseVisualStyleBackColor = true;
@@ -354,11 +389,12 @@ namespace Sber {
 			// 
 			this->TrackMonth2->Enabled = false;
 			this->TrackMonth2->LargeChange = 1;
-			this->TrackMonth2->Location = System::Drawing::Point(13, 55);
+			this->TrackMonth2->Location = System::Drawing::Point(17, 59);
+			this->TrackMonth2->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->TrackMonth2->Maximum = 36;
 			this->TrackMonth2->Minimum = 1;
 			this->TrackMonth2->Name = L"TrackMonth2";
-			this->TrackMonth2->Size = System::Drawing::Size(459, 45);
+			this->TrackMonth2->Size = System::Drawing::Size(612, 45);
 			this->TrackMonth2->TabIndex = 44;
 			this->TrackMonth2->Value = 1;
 			this->TrackMonth2->Scroll += gcnew System::EventHandler(this, &Sberform::trackBar1_Scroll);
@@ -366,9 +402,10 @@ namespace Sber {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(12, 87);
+			this->label4->Location = System::Drawing::Point(16, 93);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(70, 13);
+			this->label4->Size = System::Drawing::Size(86, 14);
 			this->label4->TabIndex = 45;
 			this->label4->Text = L"От 1 месяца";
 			this->label4->Visible = false;
@@ -377,9 +414,10 @@ namespace Sber {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(421, 87);
+			this->label5->Location = System::Drawing::Point(561, 93);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(51, 13);
+			this->label5->Size = System::Drawing::Size(62, 14);
 			this->label5->TabIndex = 46;
 			this->label5->Text = L"До 3 лет";
 			this->label5->Visible = false;
@@ -388,9 +426,10 @@ namespace Sber {
 			// tmVklFooLbl
 			// 
 			this->tmVklFooLbl->AutoSize = true;
-			this->tmVklFooLbl->Location = System::Drawing::Point(115, 39);
+			this->tmVklFooLbl->Location = System::Drawing::Point(153, 42);
+			this->tmVklFooLbl->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->tmVklFooLbl->Name = L"tmVklFooLbl";
-			this->tmVklFooLbl->Size = System::Drawing::Size(144, 13);
+			this->tmVklFooLbl->Size = System::Drawing::Size(180, 14);
 			this->tmVklFooLbl->TabIndex = 47;
 			this->tmVklFooLbl->Text = L"Вы делаете вклад на срок ";
 			this->tmVklFooLbl->Visible = false;
@@ -399,9 +438,11 @@ namespace Sber {
 			// mLabel
 			// 
 			this->mLabel->AutoSize = true;
-			this->mLabel->Location = System::Drawing::Point(262, 39);
+			this->mLabel->ForeColor = System::Drawing::Color::Chocolate;
+			this->mLabel->Location = System::Drawing::Point(349, 42);
+			this->mLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->mLabel->Name = L"mLabel";
-			this->mLabel->Size = System::Drawing::Size(48, 13);
+			this->mLabel->Size = System::Drawing::Size(57, 14);
 			this->mLabel->TabIndex = 48;
 			this->mLabel->Text = L"1 месяц";
 			this->mLabel->Visible = false;
@@ -409,9 +450,10 @@ namespace Sber {
 			// otkatPolzunka
 			// 
 			this->otkatPolzunka->AutoSize = true;
-			this->otkatPolzunka->Location = System::Drawing::Point(299, 519);
+			this->otkatPolzunka->Location = System::Drawing::Point(399, 559);
+			this->otkatPolzunka->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->otkatPolzunka->Name = L"otkatPolzunka";
-			this->otkatPolzunka->Size = System::Drawing::Size(123, 17);
+			this->otkatPolzunka->Size = System::Drawing::Size(150, 18);
 			this->otkatPolzunka->TabIndex = 49;
 			this->otkatPolzunka->Text = L"Откатить ползунок";
 			this->otkatPolzunka->UseVisualStyleBackColor = true;
@@ -422,9 +464,10 @@ namespace Sber {
 			this->ErrVklad->AutoSize = true;
 			this->ErrVklad->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->ErrVklad->ForeColor = System::Drawing::Color::Red;
-			this->ErrVklad->Location = System::Drawing::Point(150, 134);
+			this->ErrVklad->Location = System::Drawing::Point(200, 145);
+			this->ErrVklad->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->ErrVklad->Name = L"ErrVklad";
-			this->ErrVklad->Size = System::Drawing::Size(37, 15);
+			this->ErrVklad->Size = System::Drawing::Size(47, 16);
 			this->ErrVklad->TabIndex = 50;
 			this->ErrVklad->Text = L"label6";
 			this->ErrVklad->Visible = false;
@@ -434,9 +477,10 @@ namespace Sber {
 			this->ErrADD_credit->AutoSize = true;
 			this->ErrADD_credit->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->ErrADD_credit->ForeColor = System::Drawing::Color::Red;
-			this->ErrADD_credit->Location = System::Drawing::Point(150, 173);
+			this->ErrADD_credit->Location = System::Drawing::Point(200, 187);
+			this->ErrADD_credit->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->ErrADD_credit->Name = L"ErrADD_credit";
-			this->ErrADD_credit->Size = System::Drawing::Size(37, 15);
+			this->ErrADD_credit->Size = System::Drawing::Size(47, 16);
 			this->ErrADD_credit->TabIndex = 51;
 			this->ErrADD_credit->Text = L"label6";
 			this->ErrADD_credit->Visible = false;
@@ -446,9 +490,10 @@ namespace Sber {
 			this->ErrDEC_credit->AutoSize = true;
 			this->ErrDEC_credit->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->ErrDEC_credit->ForeColor = System::Drawing::Color::Red;
-			this->ErrDEC_credit->Location = System::Drawing::Point(150, 217);
+			this->ErrDEC_credit->Location = System::Drawing::Point(200, 233);
+			this->ErrDEC_credit->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->ErrDEC_credit->Name = L"ErrDEC_credit";
-			this->ErrDEC_credit->Size = System::Drawing::Size(37, 15);
+			this->ErrDEC_credit->Size = System::Drawing::Size(47, 16);
 			this->ErrDEC_credit->TabIndex = 52;
 			this->ErrDEC_credit->Text = L"label6";
 			this->ErrDEC_credit->Visible = false;
@@ -459,18 +504,22 @@ namespace Sber {
 			this->ErrMin_Vklad->AutoSize = true;
 			this->ErrMin_Vklad->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->ErrMin_Vklad->ForeColor = System::Drawing::Color::Red;
-			this->ErrMin_Vklad->Location = System::Drawing::Point(150, 274);
+			this->ErrMin_Vklad->Location = System::Drawing::Point(200, 295);
+			this->ErrMin_Vklad->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->ErrMin_Vklad->Name = L"ErrMin_Vklad";
-			this->ErrMin_Vklad->Size = System::Drawing::Size(322, 15);
+			this->ErrMin_Vklad->Size = System::Drawing::Size(408, 16);
 			this->ErrMin_Vklad->TabIndex = 53;
 			this->ErrMin_Vklad->Text = L"Неснижаемый остаток не может быть меньше 30 000 рублей";
 			this->ErrMin_Vklad->Visible = false;
 			// 
 			// Sberform
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(484, 491);
+			this->AutoScaleDimensions = System::Drawing::SizeF(96, 96);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Dpi;
+			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->AutoValidate = System::Windows::Forms::AutoValidate::EnableAllowFocusChange;
+			this->BackColor = System::Drawing::Color::WhiteSmoke;
+			this->ClientSize = System::Drawing::Size(645, 529);
 			this->Controls->Add(this->ErrMin_Vklad);
 			this->Controls->Add(this->ErrDEC_credit);
 			this->Controls->Add(this->ErrADD_credit);
@@ -503,10 +552,15 @@ namespace Sber {
 			this->Controls->Add(this->Vklad);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->DateTimePicker);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-			this->MaximumSize = System::Drawing::Size(500, 600);
-			this->MinimumSize = System::Drawing::Size(500, 530);
+			this->Font = (gcnew System::Drawing::Font(L"Verdana", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->ForeColor = System::Drawing::Color::Black;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
+			this->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->MaximumSize = System::Drawing::Size(661, 643);
+			this->MinimumSize = System::Drawing::Size(661, 568);
 			this->Name = L"Sberform";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Sberform";
 			this->Load += gcnew System::EventHandler(this, &Sberform::Sberform_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->TrackMonth2))->EndInit();
@@ -839,10 +893,8 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 	
 	double Result = Switcher(ppl_vklad, Vklad_Type, g_years, g_months, g_days, add_credit, dec_credit, pensioner, capitalization, offline, Min_vklad);
 	PrintResult->Text = System::Convert::ToString(Result);
-	
 	double Income = SwitcherIncome(ppl_vklad, Vklad_Type, g_years, g_months, g_days, add_credit, dec_credit, pensioner, capitalization, offline, Min_vklad);
 	income->Text = System::Convert::ToString(Income);
-	
 	double Perc = GetPerc(ppl_vklad, Vklad_Type, g_years, g_months, g_days, add_credit, dec_credit, pensioner, capitalization, offline, Min_vklad);
 	percTxtbx->Text = System::Convert::ToString(Perc);
 }
@@ -870,10 +922,10 @@ private: System::Void Check_Box_Dec_CheckedChanged(System::Object^ sender, Syste
 
 private: System::Void devTools_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	if (devTools->Checked) {
-		this->Size = System::Drawing::Size(500, 600);
+		this->Size = System::Drawing::Size(661, 643);
 	}
 	else {
-		this->Size = System::Drawing::Size(500, 530);
+		this->Size = System::Drawing::Size(661, 568);
 		devTools->Visible = 0;
 	}
 }
